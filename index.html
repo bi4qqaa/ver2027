@@ -1,722 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
+<html>
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/font.js"></script>
+    <script src="js/particles.min.js"></script>
+    <title>NasHomeCloud</title></head>
+  
+  <body>
+    <div id="particles-js" style="position:absolute; top: 0; z-index: -1; width: 100%;height: 100%;">
+      <canvas class="particles-js-canvas-el" width="1303" height="960" style="width: 100%; height: 100%;"></canvas>
+    </div>
+    <script>particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 20,
+            density: {
+              enable: !0,
+              value_area: 800
             }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
+          },
+          color: {
+            value: "#e1e1e1"
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000"
+            },
+            polygon: {
+              nb_sides: 5
+            },
+            image: {
+              src: "img/github.svg",
+              width: 100,
+              height: 100
             }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+          },
+          opacity: {
+            value: 0.5,
+            random: !1,
+            anim: {
+              enable: !1,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: !1
             }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+          },
+          size: {
+            value: 15,
+            random: !0,
+            anim: {
+              enable: !1,
+              speed: 180,
+              size_min: 0.1,
+              sync: !1
             }
-        }
+          },
+          line_linked: {
+            enable: !0,
+            distance: 650,
+            color: "#cfcfcf",
+            opacity: 0.26,
+            width: 1
+          },
+          move: {
+            enable: !0,
+            speed: 2,
+            direction: "none",
+            random: !0,
+            straight: !1,
+            out_mode: "out",
+            bounce: !1,
+            attract: {
+              enable: !1,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: !1,
+              mode: "repulse"
+            },
+            onclick: {
+              enable: !1,
+              mode: "push"
+            },
+            resize: !0
+          },
+          modes: {
+            grab: {
+              distance: 400,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+              speed: 3
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4
+            },
+            push: {
+              particles_nb: 4
+            },
+            remove: {
+              particles_nb: 2
+            }
+          }
+        },
+        retina_detect: !0
+      });</script>
+    <div id="wrap">
+      <div id="top">
+        <div id="logo">
+          <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARoAAAC2CAYAAAAGGkKbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3NpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpiYTZlMDQyMS1iNzhlLTQzZTUtYWUxMi1hNDdkMDg5N2FhMDIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUNGRkQ2RTgyQjE0MTFFNEI4MTdFMEFBN0Q5RDQ0OEIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUNGRkQ2RTcyQjE0MTFFNEI4MTdFMEFBN0Q5RDQ0OEIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YmE2ZTA0MjEtYjc4ZS00M2U1LWFlMTItYTQ3ZDA4OTdhYTAyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOmJhNmUwNDIxLWI3OGUtNDNlNS1hZTEyLWE0N2QwODk3YWEwMiIvPiA8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"
+          /><p></p><div class="type-js headline">
+          	<h1 class="text-js">BI4QAA云系统</h1>
+          </div>
+					<div id="kg-btn" class="">
+						<input class='tgl tgl-flip' id='qieh' type='checkbox' />
+						<label class='tgl-btn' data-tg-on='内网'data-tg-off='外网' for='qieh'></label>
+					</div>
+				</div>
+			</div>
+			<div id="main">
+			<!-- 内网访问地址 -->
+				<div id="app1" class="app animated fadeInLeft">
+					<ul>
+						<li>
+							<a href="http://10.10.10.250:88" target="_blank"><img class="shake" src="img/png/kod.png" /><strong>文件服务器</strong></a>
+						</li>
+						<li>
+							<a href="https://pan.baidu.com/" target="_blank"><img class="shake" src="img/png/iCloud-Drive.png" /><strong>百度云盘</strong></a>
+						</li>
+						<li>
+							<a href="http://10.10.10.250:5001/?launchApp=SYNO.SDS.AudioStation.Application&SynoToken=SFahSBTjdrZHs" target="_blank"><img class="shake" src="img/png/Music.png" /><strong>音乐</strong></a>
+						</li>
+						<li>
+							<a href="http://p.zjgws.com" target="_blank"><img class="shake" src="img/png/login.png" /><strong>公文网</strong></a>
+						</li>
+						<li>
+							<a href="http://10.10.10.250:5001/?launchApp=SYNO.SDS.VideoStation.AppInstance#!Home" target="_blank"><img class="shake" src="img/png/Videos.png" /><strong>学习视频</strong></a>
+						</li>
+						<li>
+							<a href="http://10.10.10.250:8080/download/ChromeSetup.exe" target="_blank"><img class="shake" src="img/png/google.png" /><strong>谷歌浏览器</strong></a>
+						</li>
+						<li>
+							<a href="http://10.10.10.250:8080/download/WeChatSetup.exe" target="_blank"><img class="shake" src="img/png/WX.png" /><strong>微信下载</strong></a>
+						</li>
+						<li>
+							<a href="http://10.10.10.250:8080/download/证书应用环境安装程序V2.14.4.rar" target="_blank"><img class="shake" src="img/png/bjca.png" /><strong>CA证书工具</strong></a>
+						</li>
+						<li>
+							<a href="http://10.10.10.250:8080/download/PCQQ2021.exe" target="_blank"><img class="shake" src="img/png/QQ.png" /><strong>QQ下载</strong></a>
+						</li>
+						<li>
+							<a href="https://www.gugeapps.net/" target="_blank"><img class="shake" src="img/png/FontExplorer-X.png" /><strong>谷歌插件</strong></a>
+						</li>
+						<li>
+							<a href="http://10.10.10.250:8080/download/向日葵（客户端）SunloginEnterprise_3.1.0.30975_x64_2.exe" target="_blank"><img class="shake" src="img/png/xrk.png" /><strong>向日葵远程</strong></a>
+						</li>
+						<li>
+							<a href="http://10.10.10.250:8080/download/WPS Office 2019 专业版（政府版，已激活）-11.8.2.8053.rar" target="_blank"><img class="shake" src="img/png/WPS.png" /><strong>WPS办公</strong></a>
+						</li>
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
+					</ul>
+				</div>
+				<!--外网访问地址 -->
+				<div id="app" class="app animated fadeInRight">
+					<ul>
+						<li>
+							<a href="http://priston.picp.net:88" target="_blank"><img class="shake" src="img/png/kod.png" /><strong>文件服务器</strong></a>
+						</li>
+						<li>
+							<a href="https://pan.baidu.com/" target="_blank"><img class="shake" src="img/png/iCloud-Drive.png" /><strong>百度云盘</strong></a>
+						</li>
+						<li>
+							<a href="http://priston.picp.net:83/?launchApp=SYNO.SDS.AudioStation.Application&SynoToken=SFahSBTjdrZHs" target="_blank"><img class="shake" src="img/png/Music.png" /><strong>音乐</strong></a>
+						</li>
+						<li>
+							<a href="http://p.zjgws.com" target="_blank"><img class="shake" src="img/png/login.png" /><strong>公文网</strong></a>
+						</li>
+						<li>
+							<a href="http://priston.picp.net:83/?launchApp=SYNO.SDS.VideoStation.AppInstance&SynoToken=4cdZVb73jCD1M#!Home" target="_blank"><img class="shake" src="img/png/Videos.png" /><strong>学习视频</strong></a>
+						</li>
+						<li>
+							<a href="http://priston.picp.net:83/download/ChromeSetup.exe" target="_blank"><img class="shake" src="img/png/google.png" /><strong>谷歌浏览器</strong></a>
+						</li>
+						<li>
+							<a href="http://priston.picp.net:83/download/WeChatSetup.exe" target="_blank"><img class="shake" src="img/png/WX.png" /><strong>微信下载</strong></a>
+						</li>
+						<li>
+							<a href="http://priston.picp.net:83/download/证书应用环境安装程序V2.14.4.rar" target="_blank"><img class="shake" src="img/png/bjca.png" /><strong>CA证书工具</strong></a>
+						</li>
+						<li>
+							<a href="http://priston.picp.net:83//PCQQ2021.exe" target="_blank"><img class="shake" src="img/png/QQ.png" /><strong>QQ下载</strong></a>
+						</li>
+						<li>
+							<a href="https://www.gugeapps.net/" target="_blank"><img class="shake" src="img/png/FontExplorer-X.png" /><strong>谷歌插件</strong></a>
+						</li>
+						<li>
+							<a href="http://priston.picp.net:83/download/向日葵（客户端）SunloginEnterprise_3.1.0.30975_x64_2.exe" target="_blank"><img class="shake" src="img/png/xrk.png" /><strong>向日葵远程</strong></a>
+						</li>
+<li>
+							<a href="http://priston.picp.net:83/download/WPS Office 2019 专业版（政府版，已激活）-11.8.2.8053.rar" target="_blank"><img class="shake" src="img/png/WPS.png" /><strong>WPS办公</strong></a>
+						</li>
 
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+						
+					</ul>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+    <div id="footer">
+      <div class="footer-contents">
+        <div class="links">
+<div class="line">
+						<li>
+						<a href="http://priston.picp.net:5001" target="_blank">@BIQAA  2020</a>&nbsp;&nbsp;&nbsp;<span class="footer-link-separator"></span>&nbsp;&nbsp;&nbsp;<span class="copyright">建议分辨率1920*1080</span>
+						</div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
-</body>
+      </div>
+    </div>
+  </body>
 
 </html>
